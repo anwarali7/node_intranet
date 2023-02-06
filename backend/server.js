@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.json({message: "homepage"});
+  res.json({ message: "homepage" });
 });
 
 app.listen(8000, () => {
