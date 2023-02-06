@@ -1,5 +1,13 @@
 import express from "express";
 import cors from "cors";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+// get config vars
+dotenv.config({ path: "./Config/.env" });
+
+// access config var
+console.log(process.env.TOKEN_SECRET);
 
 const app = express();
 
