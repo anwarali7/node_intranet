@@ -7,10 +7,9 @@ import morgan from "morgan";
 import cors from "cors";
 // on importe la fonction de gestion d'erreur
 import afficheError from "./Utils/utils.js";
-import Login from "./Controllers/login.js";
-import auth from "./Middlewares/auth.js";
-import Dashboard from "./Controllers/dashboard.js";
-import UserProfile from "./Controllers/userProfile.js";
+
+import router from "./routes/routes.js";
+
 
 // get config vars
 dotenv.config({ path: "./Config/.env" });
@@ -91,17 +90,7 @@ mongoose
 // app.use("/api/user", userRoutes);
 
 
-
-// Homepage
-app.get("/", (req, res) => {
-  res.json({ message: "homepage" });
-});
-
-app.post("/login", Login);
-
-app.post("/dashboard", auth, Dashboard);
-
-app.get("/userProfile/:id", UserProfile);
+app.use(router);
 
 // middleware pour pour attrapper l'erreur
 // si aucun router est trouver
@@ -118,6 +107,10 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
   afficheError(error, res);
 });
+
+// ==========
+// App start
+// ==========
 
 app.listen(APP_PORT, () => {
   console.log(
