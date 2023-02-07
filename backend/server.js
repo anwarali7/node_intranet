@@ -90,6 +90,19 @@ mongoose
 // // on declenche les fonctions liées à userRoutes quand nous sommes sur ce chemin: "/api/user"
 // app.use("/api/user", userRoutes);
 
+
+
+// Homepage
+app.get("/", (req, res) => {
+  res.json({ message: "homepage" });
+});
+
+app.post("/login", Login);
+
+app.post("/dashboard", auth, Dashboard);
+
+app.get("/userProfile/:id", UserProfile);
+
 // middleware pour pour attrapper l'erreur
 // si aucun router est trouver
 app.use((req, res, next) => {
@@ -105,17 +118,6 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
   afficheError(error, res);
 });
-
-// Homepage
-app.get("/", (req, res) => {
-  res.json({ message: "homepage" });
-});
-
-app.post("/login", Login);
-
-app.post("/dashboard", auth, Dashboard);
-
-app.get("/userProfile/:id", UserProfile);
 
 app.listen(APP_PORT, () => {
   console.log(
