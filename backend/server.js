@@ -8,8 +8,8 @@ import cors from "cors";
 // on importe la fonction de gestion d'erreur
 import afficheError from "./Utils/utils.js";
 
-import router from "./routes/routes.js";
-
+// on importe les element de nos userRoutes
+import userRoutes from "./Routes/user.route.js";
 
 // get config vars
 dotenv.config({ path: "./Config/.env" });
@@ -87,10 +87,7 @@ mongoose
 
 // // middlewares pour le chargements des différentes routes
 // // on declenche les fonctions liées à userRoutes quand nous sommes sur ce chemin: "/api/user"
-// app.use("/api/user", userRoutes);
-
-
-app.use(router);
+app.use("/api/user", userRoutes);
 
 // middleware pour pour attrapper l'erreur
 // si aucun router est trouver

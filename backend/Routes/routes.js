@@ -1,30 +1,28 @@
 import express from "express";
+
+import {
+  CreateUserController,
+  getAllUserController,
+} from "../Controllers/user.controller.js";
+
 const router = express.Router();
 
-import Login from "../Controllers/login.js";
-import Dashboard from "../Controllers/dashboard.js";
-import Users from "../Controllers/user/users.js";
-import UserNew from "../Controllers/user/userNew.js";
-import UserData from "../Controllers/user/userData.js";
-import UserEdit from "../Controllers/user/userEdit.js";
-import UserDelete from "../Controllers/user/userDelete.js";
+// ==========
+// AUTHENTIFICATION
+// ==========
 
-import auth from "../Middlewares/auth.js";
+// route de creation d'un nouveau utlisateur
+router.post("/user/new", CreateUserController);
+//route  d'affichage des info de tous les users inscrit
+router.post("/all-users", getAllUserController);
 
-// Homepage
-router.get("/", (req, res) => {
-  res.json({ message: "homepage" });
-});
+// router.get("/user/:id", UserData);
+// router.post("/user/:id/edit", UserEdit);
+// router.delete("/user/:id/delete", UserDelete);
+// router.post("/login", Login);
 
-router.post("/login", Login);
+// router.post("/dashboard", auth, Dashboard);
 
-router.post("/dashboard", auth, Dashboard);
-
-router.get("/users/", Users);
-
-router.post("/user/new", UserNew);
-router.get("/user/:id", UserData);
-router.post("/user/:id/edit", UserEdit);
-router.delete("/user/:id/delete", UserDelete);
+// router.get("/users/", Users);
 
 export default router;

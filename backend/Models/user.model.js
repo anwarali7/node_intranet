@@ -8,10 +8,6 @@ const userSchema = new mongoose.Schema(
     id: {
       //type chaine de caractere
       type: String,
-      //longueur minimal
-      minLength: 3,
-      //longueur maximum
-      maxLength: 55,
     },
     gender: {
       //type chaine de caractere
@@ -86,7 +82,7 @@ const userSchema = new mongoose.Schema(
 
     birthdate: {
       // chaine de caractere
-      type: Date,
+      type: String,
     },
 
     city: {
@@ -106,16 +102,6 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       // client par defaut
       default: "false",
-    },
-
-    // verifie si un user est inscrit
-    isMember: {
-      // soit vrai ou soit faux
-      type: Boolean,
-      // obligatoire
-      required: true,
-      // personne n'est inscrit par defaut
-      default: false,
     },
 
     // pour inserer une image
@@ -149,9 +135,14 @@ const userSchema = new mongoose.Schema(
 
 // creation de fontions statique pour les donnée (CRUD users)
 userSchema.static("createUser", createUser);
+userSchema.static("lastData", lastData);
 userSchema.static("getUserByEmail", getUserByEmail);
 userSchema.static("getUserById", getUserById);
 userSchema.static("getAllUsers", getAllUsers);
+userSchema.static("countAllUsers", countAllUsers);
+userSchema.static("refreshToken", refreshToken);
+userSchema.static("refreshToken", refreshToken);
+userSchema.static("updatePassword", updatePassword);
 userSchema.static("updateUserProfil", updateUserProfil);
 userSchema.static("deleteUser", deleteUser);
 
@@ -163,7 +154,7 @@ userSchema.static("deleteUser", deleteUser);
 async function createUser(
   id,
   gender,
-  categorie,
+  category,
   firstname,
   lastname,
   email,
@@ -178,7 +169,7 @@ async function createUser(
   return await this.create({
     id,
     gender,
-    categorie,
+    category,
     firstname,
     lastname,
     email,
@@ -202,9 +193,15 @@ async function getUserByEmail(email) {
 // fonction appelé par le controller pour rechercher dans la base de donné un utilisateur via son id
 //  et nous le retourne
 async function getUserById(id) {
-  const user = await this.find({ id }).select("-password");
+  const user = await this.find({ _id: id }).select("-password");
   if (!user) return false;
   return user;
+}
+
+// une fonction qui affichera la dernière donnée de notre db
+async function lastData() {
+  const lastUserId = await this.find({}).sort({ createdAt: -1 }).limit(1);
+  return lastUserId;
 }
 
 // la fonction appelé par le controller qui cherche la liste de tous les utilisateurs pour nous les afficher
@@ -214,12 +211,46 @@ async function getAllUsers() {
   return AllUsers;
 }
 
+// la fonction appelé par le controller pour compter le nombre de user
+async function countAllUsers() {
+  const countAllUsers = await this.find().count();
+  return countAllUsers;
+}
+
+// fonction appelé par le controller pour actualiser le token pour un utilisateur
+async function refreshToken(_id, token) {
+  const newToken = await this.findOneAndUpdate(
+    // recherche via id utilisateur
+    { _id },
+    // on met a jour la valeur du token ainsi que la date de mise a jour
+    { $set: { tokens: { token: token, dateCreation: Date.now() } } },
+    // option supplementaire
+    { new: true, upsert: true, setDefaultsOnInsert: true }
+  );
+  return newToken;
+}
+
+// fonction appelé par le controller pour modifier le mot de passe d'un utilisateur
+// depuis la base de donnée
+async function updatePassword(email, newhashedPass) {
+  const newPassword = await this.findOneAndUpdate(
+    // recherche via son mail
+    { email },
+    // on modifie le mot de passe utiisateur
+    // par le nouveau mot de passe haché
+    { $set: { password: newhashedPass } },
+    // pour valider le changement
+    { new: true, upsert: true, setDefaultsOnInsert: true }
+  );
+  return newPassword;
+}
+
 // fonction appelé par le controller pour modifier le profil d'un utilisateur
 // depuis la base de donnée
 async function updateUserProfil(
-  id,
+  _id,
   newGender,
-  newCategorie,
+  newCategory,
   newFirstname,
   newLastname,
   newEmail,
@@ -230,15 +261,15 @@ async function updateUserProfil(
   newCountry,
   newPhoto
 ) {
-  const newPassword = await this.findOneAndUpdate(
-    // recherche via son mail
-    { id },
+  const newProfil = await this.findOneAndUpdate(
+    // recherche via son id
+    { _id },
     // on modifie le mot de passe utiisateur
     // par le nouveau mot de passe haché
     {
       $set: {
         gender: newGender,
-        categorie: newCategorie,
+        category: newCategory,
         firstname: newFirstname,
         lastname: newLastname,
         email: newEmail,
@@ -253,13 +284,13 @@ async function updateUserProfil(
     // pour valider le changement
     { new: true, upsert: true, setDefaultsOnInsert: true }
   );
-  return newPassword;
+  return newProfil;
 }
 
 // la fonction appelé par le controller  pour supprime les info d'un utilisateur
 // depuis la base de donnée
-async function deleteUser(id) {
-  const deleteUserInfo = await this.deleteOne({ id }).exec();
+async function deleteUser(_id) {
+  const deleteUserInfo = await this.deleteOne({ _id }).exec();
   return deleteUserInfo;
 }
 
