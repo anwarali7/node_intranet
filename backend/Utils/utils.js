@@ -9,10 +9,11 @@ export default function afficheError(err, res) {
   });
 }
 
-const salt = 10;
 // fonction d'achage du mot de passe
 export const hashPassword = (newPassword) => {
-  //   remplace le mot de passe par un mot de passe crypter
+  const salt = 10;
+  console.log(newPassword, salt);
+  //remplace le mot de passe par un mot de passe crypter
   const NewPasswordHash = bcrypt.hashSync(newPassword, salt);
   return NewPasswordHash;
 };
