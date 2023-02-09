@@ -1,0 +1,67 @@
+.first_container{
+    h1{
+        border-bottom: 1px solid #ddd7d7;
+        padding-bottom: 15px;
+        letter-spacing: 2px;
+    }
+}
+
+.page_modify{
+    margin-bottom: 20px;
+
+    .global_section{
+        width: 100%;
+        margin: 20px 40px 20px 40px;
+
+          form{
+            display: flex;
+            flex-direction: column;
+            margin: 0px 50px;
+
+            label{
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                p{
+                    min-width: 200px;
+                    text-align: end;
+                }
+
+                input, select{
+                    width: 500px;
+                    padding: 10px;
+                    color: #bbb4b4;
+                    margin: 0;
+                }
+            }
+            }
+          }
+
+      .button_login{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+
+        .LoginButton{
+            width: 10%;
+            height: auto;
+            width: 10%;
+            margin: auto;
+            background-color:  rgb(199, 84, 99);
+            border: none;
+            border-radius: 3px;
+
+            p{
+                color: white;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+
