@@ -8,7 +8,8 @@ import { Link }  from 'react-router-dom';
 
 
 
-export default function Home() {
+export default function Home({userData}) {
+  console.log(userData);
   return (
     <>
         <section className='home'>
@@ -19,18 +20,18 @@ export default function Home() {
           </div>
           <div className='global_section'>
             <div className='second-section'>
-                 <div className='technique'>Technique</div>
+                 <div className='technique'>{userData.category}</div>
 
                 <div className='flex-left'>
-                    <img src={profil2} alt="profil"/>
+                    <img src={userData.photo} alt="profil"/>
                 </div>
 
                 <div className='flex-right'>
-                    <p className='name'>Quentin Roger <em>(36 ans)</em></p>
-                    <p className='localisation'>Saint-pierre, France</p>
-                    <Link className='mail'><em><EmailIcon /></em>quantin@gmail.com</Link>
-                    <p className='phone'><em><PhoneIcon /></em>05-65-47-68-46</p>
-                    <p className='birthday'><em><CakeIcon /></em>Anniversaire : 11 décmebre</p>
+                    <p className='name'>{userData.firstname} {userData.lastname} <em>(36 ans)</em></p>
+                    <p className='localisation'>{userData.city}, {userData.country}</p>
+                    <Link className='mail'><em><EmailIcon /></em>{userData.email}</Link>
+                    <p className='phone'><em><PhoneIcon /></em>{userData.phone}</p>
+                    <p className='birthday'><em><CakeIcon /></em>Anniversaire : {userData.birthdate}</p>
                 </div>
             </div>
           </div>

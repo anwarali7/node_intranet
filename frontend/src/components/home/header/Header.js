@@ -8,7 +8,7 @@ import profil from './imgHeader/profil.jpg';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 
-export default function Header() {
+export default function Header({userData}) {
 
     const [sidebar, setSidebar] = useState(false);
 
@@ -38,7 +38,7 @@ export default function Header() {
                      </ul>
                     </div>
                     <div className='deconnect'>
-                        <img src={profil} alt="profil"/>
+                        <img src={userData.photo} alt="profil"/>
                         <LogoutIcon className='logout'/>
                         <p className='button_logout'>Deconnexion</p>
                     </div>

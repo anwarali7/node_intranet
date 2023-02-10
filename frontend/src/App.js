@@ -13,12 +13,12 @@ function App() {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    if (token === "") {
+    if (userData === null) {
       navigate("/connexion");
     } else {
       navigate("/home")
     }
-  }, [navigate, token]);
+  }, [userData, navigate]);
 
   useEffect(() => {
     if(token === "") {
