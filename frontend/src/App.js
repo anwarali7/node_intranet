@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import PageConnexion from './components/pages/PageConnexion';
 import PageCollaborateurs from './components/pages/PageCollaborateurs.js';
 import { getUserData } from './services/requests';
@@ -9,19 +9,17 @@ import { useEffect, useState } from 'react';
 import AddUser from './components/pages/AddUser';
 
 function App() {
+  const navigate = useNavigate();
   const [token, setToken] = useState("");
   const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-<<<<<<< HEAD
-=======
-    if (userData === null) {
-      navigate("/connexion");
-    } else {
-      navigate("/home")
-    }
->>>>>>> 7e8e35d77418a11bcc447f1367daf7a1cc66043a
-  }, [userData]);
+  // useEffect(() => {
+  //   if (userData === null) {
+  //     navigate("/connexion");
+  //   } else {
+  //     navigate("/home")
+  //   }
+  // }, [userData]);
 
   useEffect(() => {
     if(token === "") {

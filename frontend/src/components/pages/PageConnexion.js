@@ -16,6 +16,7 @@ function PageConnexion({
       if (!(reqdata.data.token == null)) {
         logIn(reqdata.data.token);
       } else {
+        window.alert(reqdata.data.errors.message);
         console.error("Login error.");
       }
     };
