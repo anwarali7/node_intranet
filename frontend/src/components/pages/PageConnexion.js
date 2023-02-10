@@ -2,7 +2,6 @@ import React from 'react'
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import '../home/header/header.scss'
 import LoginIcon from '@mui/icons-material/Logout';
-// import './style/pageconnexion.scss';
 import './pageconnexion.scss';
 import * as req from "../../services/requests.js";
 

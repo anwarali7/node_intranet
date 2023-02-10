@@ -23,7 +23,7 @@ export default function Home({userData}) {
                  <div className='technique'>{userData.category}</div>
 
                 <div className='flex-left'>
-                    <img src={userData.photo} alt="profil"/>
+                    <img src={profil2} alt="profil"/>
                 </div>
 
                 <div className='flex-right'>

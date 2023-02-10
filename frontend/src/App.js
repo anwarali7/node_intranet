@@ -1,24 +1,19 @@
 import './App.css';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import PageConnexion from './components/pages/PageConnexion';
 import PageCollaborateurs from './components/pages/PageCollaborateurs.js';
 import { getUserData } from './services/requests';
 import HomePage from './components/pages/HomePage';
 import ModifyPage from './components/pages/ModifyPage';
 import { useEffect, useState } from 'react';
+import AddUser from './components/pages/AddUser';
 
 function App() {
-  const navigate = useNavigate();
   const [token, setToken] = useState("");
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    if (userData === null) {
-      navigate("/connexion");
-    } else {
-      navigate("/home")
-    }
-  }, [userData, navigate]);
+  }, [userData]);
 
   useEffect(() => {
     if(token === "") {
@@ -52,6 +47,7 @@ function App() {
         <Route path='/home' exact element={<HomePage token={token} logOut={handleLogOut} userData={userData}/>} />
         <Route path='/collaborateurs' exact element={<PageCollaborateurs token={token} userData={userData} logOut={handleLogOut} />} />
         <Route path='/modify' exact element={<ModifyPage />} />
+        <Route path='/adduser' exact element={<AddUser />} />
 
       </Routes>
 

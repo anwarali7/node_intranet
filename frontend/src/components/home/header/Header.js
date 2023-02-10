@@ -4,8 +4,8 @@ import { Link}  from 'react-router-dom';
 import ListIcon from '@mui/icons-material/List';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import './header.scss'
-import profil from './imgHeader/profil.jpg';
 import LogoutIcon from '@mui/icons-material/Logout';
+import photo from './imgHeader/profil.jpg'
 
 
 export default function Header({userData}) {
@@ -38,7 +38,7 @@ export default function Header({userData}) {
                      </ul>
                     </div>
                     <div className='deconnect'>
-                        <img src={userData.photo} alt="profil"/>
+                        <img src={photo} alt="profil" />
                         <LogoutIcon className='logout'/>
                         <p className='button_logout'>Deconnexion</p>
                     </div>
