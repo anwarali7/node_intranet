@@ -411,29 +411,24 @@ export async function updateUserProfilController(req, res) {
   // les differentes contrôle a faire avant la modification du profil d'un user
   // cela evite que le serveur il crache
 
-  // if (
-  //   !newGender ||
-  //   !newCategory ||
-  //   !newFirstname ||
-  //   !newLastname ||
-  //   !newEmail ||
-  //   !newhashedPass ||
-  //   !newPhone ||
-  //   !newBirthdate ||
-  //   !newCity ||
-  //   !newCountry ||
-  //   !newPhoto
-  // ) {
-  //   // message d'erreur si champ vide
-  //   errors.errorMessage = "Veuillez remplir tous les champs";
-  //   res.json({ errors });
-  //   return;
-  // }
-  // on chiffre le mot de passe
-  const hashedPass = hashPassword(newhashedPass);
-
-  // on met a jour le mot de passe du user
-  const user = await userModel.updatePassword(email, hashedPass);
+  if (
+    !newGender ||
+    !newCategory ||
+    !newFirstname ||
+    !newLastname ||
+    !newEmail ||
+    !newhashedPass ||
+    !newPhone ||
+    !newBirthdate ||
+    !newCity ||
+    !newCountry ||
+    !newPhoto
+  ) {
+    // message d'erreur si champ vide
+    errors.errorMessage = "Veuillez remplir tous les champs";
+    res.json({ errors });
+    return;
+  }
 
   // on recupere l'id  passer en parametre
   const { _id } = req.params;
@@ -451,7 +446,7 @@ export async function updateUserProfilController(req, res) {
     newFirstname,
     newLastname,
     newEmail,
-    hashedPass,
+    hashPassword(newhashedPass),
     newPhone,
     newBirthdate,
     newCity,
