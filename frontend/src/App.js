@@ -13,14 +13,17 @@ function App() {
   const [token, setToken] = useState("");
   const [userData, setUserData] = useState(null);
 
-  // useEffect(() => {
-  //   if (userData === null) {
-  //     navigate("/connexion");
-  //   } else {
-  //     navigate("/home")
-  //   }
-  // }, [userData]);
+  // Redirection automatique vers la page /home après connexion
+  useEffect(() => {
+    if (userData === null) {
+      navigate("/connexion");
+    } else {
+      navigate("/home")
+    }
+  }, [userData]);
 
+  // Une fois connecté avec token, on récupère
+  // les données de l'utilisateur connecté.
   useEffect(() => {
     if(token === "") {
       setUserData(null);
@@ -53,7 +56,7 @@ function App() {
         <Route path='/home' exact element={<HomePage token={token} logOut={handleLogOut} userData={userData} />} />
         <Route path='/collaborateurs' exact element={<PageCollaborateurs token={token} userData={userData} logOut={handleLogOut} />} />
         <Route path='/modify' exact element={<ModifyPage />} />
-        <Route path='/adduser' exact element={<AddUser />} />
+        <Route path='/adduser' exact element={<AddUser token={token} userData={userData}/>} />
 
       </Routes>
 
