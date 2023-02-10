@@ -18,7 +18,7 @@ function App() {
     } else {
       navigate("/home")
     }
-  }, [userData, navigate]);
+  }, [userData]);
 
   useEffect(() => {
     if(token === "") {
@@ -46,10 +46,10 @@ function App() {
 
   return (
     <div className="App">
-      
+
       <Routes>
         {['/', '/connexion'].map(path => <Route path={path} exact element={<PageConnexion logIn={handleLogIn} />} />)}
-        <Route path='/home' exact element={<HomePage token={token} logOut={handleLogOut} userData={userData}/>} />
+        <Route path='/home' exact element={<HomePage token={token} logOut={handleLogOut} userData={userData} />} />
         <Route path='/collaborateurs' exact element={<PageCollaborateurs token={token} userData={userData} logOut={handleLogOut} />} />
         <Route path='/modify' exact element={<ModifyPage />} />
 

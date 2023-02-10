@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { Link}  from 'react-router-dom';
+import { Link, useNavigate}  from 'react-router-dom';
 import ListIcon from '@mui/icons-material/List';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import './header.scss'
@@ -8,8 +8,8 @@ import profil from './imgHeader/profil.jpg';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 
-export default function Header({userData}) {
-
+export default function Header({userData, logOut}) {
+    const navigate = useNavigate();
     const [sidebar, setSidebar] = useState(false);
 
     function handleClick(){
@@ -40,7 +40,7 @@ export default function Header({userData}) {
                     <div className='deconnect'>
                         <img src={userData.photo} alt="profil"/>
                         <LogoutIcon className='logout'/>
-                        <p className='button_logout'>Deconnexion</p>
+                        <p className='button_logout' onClick={() => {logOut(); navigate('/connexion');}}>Deconnexion</p>
                     </div>
                 </div>
 
