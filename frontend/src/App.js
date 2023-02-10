@@ -13,6 +13,14 @@ function App() {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
+<<<<<<< HEAD
+=======
+    if (userData === null) {
+      navigate("/connexion");
+    } else {
+      navigate("/home")
+    }
+>>>>>>> 7e8e35d77418a11bcc447f1367daf7a1cc66043a
   }, [userData]);
 
   useEffect(() => {
@@ -41,10 +49,10 @@ function App() {
 
   return (
     <div className="App">
-      
+
       <Routes>
         {['/', '/connexion'].map(path => <Route path={path} exact element={<PageConnexion logIn={handleLogIn} />} />)}
-        <Route path='/home' exact element={<HomePage token={token} logOut={handleLogOut} userData={userData}/>} />
+        <Route path='/home' exact element={<HomePage token={token} logOut={handleLogOut} userData={userData} />} />
         <Route path='/collaborateurs' exact element={<PageCollaborateurs token={token} userData={userData} logOut={handleLogOut} />} />
         <Route path='/modify' exact element={<ModifyPage />} />
         <Route path='/adduser' exact element={<AddUser />} />
