@@ -6,8 +6,10 @@ export function verifUser(req, res, next) {
   // on fait appel a notre notre secret dans variable d'environnement depuis le fichier .env
   const { APP_TOKEN_SECRET } = process.env;
   // on recupere notre jeton JWT dans l'entete
-  const token =
-    req.body.tokens || req.query.token || req.headers["authorization"];
+  const authHeader = req.headers["authorization"];
+  // Format du header 'Authorization' : 'Bearer <token>'
+  // On veut récupérer <token> sans 'Bearer ', on split.
+  const token = authHeader && authHeader.split(' ')[1];
 
   // condition si pas de token
   if (!token) {
