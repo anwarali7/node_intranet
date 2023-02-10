@@ -1,0 +1,77 @@
+.page_connexion{
+    margin: 0px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .first-section{
+        display: flex;
+        flex-direction: column;
+        margin: 10px 20px 20px 20px;
+      
+        .connexion{
+          font-size: 28px;
+          margin: 18px 0px 20px 0px;
+      }
+        .paragraphe{
+          font-weight: 400;
+          font-size: 18px;
+          margin: 12px 0px;
+        }
+      }
+
+       .global_section{
+        width: 100%;
+        margin: 20px 40px 20px 40px;
+
+          form{
+            display: flex;
+            flex-direction: column;
+            margin: 0px 50px;
+
+            label{
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+
+                p{
+                    min-width: 200px;
+                    text-align: end;
+                }
+
+                input{
+                    width: 500px;
+                    padding: 10px;
+                    margin: 0;
+                }
+            }
+
+            }
+
+          }
+    
+       
+
+      .button_login{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+
+        .LoginButton{
+            width: 23%;
+            height: auto;
+            background-color:  rgb(199, 84, 99);
+            border: none;
+            border-radius: 3px;
+
+            p{
+                color: white;
+                font-weight: 500;
+            }
+        }
+    }
+}

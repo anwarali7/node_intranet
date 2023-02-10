@@ -33,7 +33,7 @@ export default function Header() {
                         <p>Liste</p>
                         <ul className={sidebar ? "nav-links-sidebar" : "nav-links"}>
                         <li>
-                            <Link to="/collaborateur" className='link'>collaborateurs</Link>
+                            <Link to="/collaborateurs" className='link'>collaborateurs</Link>
                         </li>
                      </ul>
                     </div>

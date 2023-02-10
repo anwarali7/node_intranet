@@ -1,0 +1,84 @@
+.second-section {
+  position: relative;
+  box-shadow: 1px 2px 3px #cecccc;
+  display: flex;
+  flex-direction: row;
+  width: 450px;
+  height: 230px;
+  border-radius: 3px;
+
+  .technique {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #8fd4ef;
+    padding: 5px;
+  }
+
+  .flex-left {
+    width: 50%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .flex-right {
+    text-align: start;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 23px;
+
+    .name {
+      font-weight: 700;
+      font-size: 18px;
+      margin: 32px 0px 0px 0px;
+
+      em {
+        color: grey;
+        font-weight: 200;
+      }
+    }
+
+    .localisation {
+      color: grey;
+      font-weight: 300;
+      margin: 8px 0px 0px 0px;
+    }
+
+    .mail,
+    .phone {
+      color: rgb(207, 70, 89);
+      ;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 5px;
+      margin: 0px 0px 0px 0px;
+
+
+      em {
+        color: grey;
+      }
+    }
+
+    .birthday {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      gap: 5px;
+      margin: 0px 0px 0px 0px;
+      gap: 5px;
+      color: grey;
+
+      em {
+        color: grey;
+      }
+    }
+
+  }
+}
